@@ -64,23 +64,33 @@ img {
     cursor: pointer;
 }
 
-.input-notes {
+.contact-item__archive {
+    padding: 8px;
+    font-size: 18px;
+    background-color: green;
+    color: white;
+    border: 0;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.contact-input {
     border: 1px dashed black;
     padding: 16px;
-    margin: 20px 0;
+    margin: 14px 0;
     border-radius: 8px;
     margin-bottom: 32px;
 }
 
-.input-notes {
+.contact-input input {
     display: block;
     width: 100%;
     padding: 8px;
-    margin: 50px 0;
+    margin: 8px 0;
     font-family: 'Inter', sans-serif;
 }
 
-.input-notes button {
+.contact-input button {
     width: 100%;
     padding: 8px;
     font-family: 'Inter', sans-serif;
