@@ -21,7 +21,7 @@ class ContactApp extends React.Component {
   }
 
   onArchiveHandler(id) {
-    const contacts = this.state.contacts.filter(contact => contact.id !== id);
+    const contacts = this.state.contacts.map(contact => contact.id !== id ? {...contact, archived : !contact.archived} : contact);
     this.setState({ contacts });
   }
 
@@ -42,6 +42,12 @@ class ContactApp extends React.Component {
   }
  
  render() {
+  /*const daftarContact = this.state.contacts.filter((contact) => {
+    return contact.archived === false;
+  });
+  const archivedContact = this.state.contacts.filter((contact) => {
+    return contact.archived === true;
+  })*/
    return (
      <div className="contact-app">
       <h1>Aplikasi Kontak</h1>
@@ -50,6 +56,7 @@ class ContactApp extends React.Component {
        <h2>Daftar Kontak</h2>
        <ContactList contacts={this.state.contacts} onDelete={this.onDeleteHandler} onArchiveHandler={this.onArchiveHandler} />
        <h2>Arsip Kontak</h2>
+       <ContactList contacts={this.state.contacts} onDelete={this.onDeleteHandler} onArchiveHandler={this.onArchiveHandler} />
      </div>
    );
  }
