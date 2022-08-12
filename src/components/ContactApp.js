@@ -35,6 +35,7 @@ class ContactApp extends React.Component {
             name,
             tag,
             imageUrl: '/images/default.jpg',
+            archived: false,
           }
         ]
       }
@@ -42,21 +43,21 @@ class ContactApp extends React.Component {
   }
  
  render() {
-  /*const daftarContact = this.state.contacts.filter((contact) => {
+  const daftarContact = this.state.contacts.filter((contact) => {
     return contact.archived === false;
   });
   const archivedContact = this.state.contacts.filter((contact) => {
     return contact.archived === true;
-  })*/
+  })
    return (
      <div className="contact-app">
       <h1>Aplikasi Kontak</h1>
        <h2>Tambah Kontak</h2>
        <ContactInput addContact={this.onAddContactHandler} />
        <h2>Daftar Kontak</h2>
-       <ContactList contacts={this.state.contacts} onDelete={this.onDeleteHandler} onArchiveHandler={this.onArchiveHandler} />
+       <ContactList contacts={daftarContact} onDelete={this.onDeleteHandler} onArchiveHandler={this.onArchiveHandler} />
        <h2>Arsip Kontak</h2>
-       <ContactList contacts={this.state.contacts} onDelete={this.onDeleteHandler} onArchiveHandler={this.onArchiveHandler} />
+       <ContactList contacts={archivedContact} onDelete={this.onDeleteHandler} onArchiveHandler={this.onArchiveHandler} />
      </div>
    );
  }
