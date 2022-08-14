@@ -11,6 +11,7 @@ function ContactList({ contacts, onDelete, onArchive }) {
           id={contact.id}
           onDelete={onDelete}
           onArchive={onArchive}
+          isArchived={contact.archived}
           {...contact} />
         ))
       }

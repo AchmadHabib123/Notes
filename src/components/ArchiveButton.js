@@ -1,7 +1,7 @@
 import React from 'react';
  
-function DeleteButton({ id, onArchive }) {
-  return <button className='contact-item__archive' onClick={() => onArchive(id)}>Arsip</button>
+function ArchiveButton({ id, onArchive, isArchived }) {
+  return <button className='contact-item__archive' onClick={() => onArchive(id)}>{isArchived ? 'Pindahkan' : 'Arsipkan'}</button>
 }
  
-export default DeleteButton;
+export default ArchiveButton;

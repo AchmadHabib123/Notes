@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    background-color: whitesmoke;
+    background-color: rgb(5, 24, 69);
 }
 
 img {
@@ -23,13 +23,18 @@ img {
     font-weight: normal;
     font-size: 48px;
     margin-bottom: 32px;
+    color: rgb(180, 180, 10);
+}
+
+.contact-app h2 {
+    color: rgb(180, 180, 10);
 }
 
 .contact-item {
     display: flex;
     align-items: center;
     margin: 24px 0;
-    border: 1px dashed black;
+    border: 1px dashed rgb(180, 180, 10);
     padding: 16px;
     border-radius: 8px;
 }
@@ -75,7 +80,7 @@ img {
 }
 
 .contact-input {
-    border: 1px dashed black;
+    border: 1px dashed rgb(180, 180, 10);
     padding: 16px;
     margin: 14px 0;
     border-radius: 8px;
@@ -94,4 +99,8 @@ img {
     width: 100%;
     padding: 8px;
     font-family: 'Inter', sans-serif;
+}
+
+.contact-list {
+    color: white;
 }
