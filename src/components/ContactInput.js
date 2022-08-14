@@ -5,21 +5,21 @@ class ContactInput extends React.Component {
         super(props);
 
         this.state = {
-        name: '',
+        title: '',
         body: '',
         limit:50,
         }
  
-        this.onNameChangeEventHandler = this.onNameChangeEventHandler.bind(this);
+        this.onTitleChangeEventHandler = this.onTitleChangeEventHandler.bind(this);
         this.onBodyChangeEventHandler = this.onBodyChangeEventHandler.bind(this);
         this.onSubmitEventHandler = this.onSubmitEventHandler.bind(this);
     }
  
-    onNameChangeEventHandler(event) {
+    onTitleChangeEventHandler(event) {
         if(this.state.limit > 0){
             this.setState((s) => {
               return {
-                name : event.target.value,
+                title : event.target.value,
                 limit: s.limit - 1
               }
             });
@@ -50,8 +50,8 @@ class ContactInput extends React.Component {
     render() {
         return (
         <form className='contact-input' onSubmit={this.onSubmitEventHandler}>
-            <p className='contact-input__name__char-limit'>Sisa karakter: {this.state.limit}</p>
-            <input class="contact-input__name" type="text" placeholder="Nama" value={this.state.name} onChange={this.onNameChangeEventHandler} />
+            <p className='contact-input__title__char-limit'>Sisa karakter: {this.state.limit}</p>
+            <input class="contact-input__title" type="text" placeholder="Nama" value={this.state.title} onChange={this.onTitleChangeEventHandler} />
             <textarea class= "contact-input__body" type="text" placeholder="Description" value={this.state.body} onChange={this.onBodyChangeEventHandler} />
             <button type="submit">Tambah</button>
         </form>

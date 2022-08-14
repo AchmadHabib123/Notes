@@ -9,6 +9,7 @@ class ContactApp extends React.Component {
     super(props);
     this.state = {
       contacts: getData(),
+      search:'',
     }
  
     this.onDeleteHandler = this.onDeleteHandler.bind(this);
@@ -23,19 +24,15 @@ class ContactApp extends React.Component {
   }
 
   onArchiveHandler(id) {
-<<<<<<< HEAD
     const contacts = this.state.contacts.map(contact => contact.id === id ? {...contact, archived : !contact.archived} : contact);
-=======
-    const contacts = this.state.contacts.map(contact => contact.id !== id ? {...contact, archived : !contact.archived} : contact);
->>>>>>> 7dabe52580df8cc881445f9668aad80e81d78e31
     this.setState({ contacts });
   }
 
-  onSearch(name) {
+  onSearch(title) {
     let contacts;
-    if (name !== '' && name.length > 0) {
+    if (title !== '' && title.length > 0) {
       contacts = this.state.contacts.filter((contact) => {
-        return contact.name.toLowerCase().includes(name.toLowerCase());
+        return contact.title.toLowerCase().includes(title.toLowerCase());
       });
     } else {
       contacts = getData();
@@ -43,14 +40,14 @@ class ContactApp extends React.Component {
     this.setState({ contacts });
   }
 
-  onAddContactHandler({ name, body }) {
+  onAddContactHandler({ title, body }) {
     this.setState((prevState) => {
       return {
         contacts: [
           ...prevState.contacts,
           {
             id: +new Date(),
-            name,
+            title,
             body,
             imageUrl: '/images/default.jpg',
             archived: false,
@@ -70,19 +67,13 @@ class ContactApp extends React.Component {
    return (
      <div className="contact-app">
       <h1>Aplikasi Kontak</h1>
-        <SearchNotes onSearch={this.onSearchNote} />
+        <SearchNotes onSearch={this.onSearch} />
        <h2>Tambah Kontak</h2>
        <ContactInput addContact={this.onAddContactHandler} />
        <h2>Daftar Kontak</h2>
-<<<<<<< HEAD
        <ContactList contacts={daftarContact} onDelete={this.onDeleteHandler} onArchive={this.onArchiveHandler} />
        <h2>Arsip Kontak</h2>
        <ContactList contacts={archivedContact} onDelete={this.onDeleteHandler} onArchive={this.onArchiveHandler} />
-=======
-       <ContactList contacts={daftarContact} onDelete={this.onDeleteHandler} onArchiveHandler={this.onArchiveHandler} />
-       <h2>Arsip Kontak</h2>
-       <ContactList contacts={archivedContact} onDelete={this.onDeleteHandler} onArchiveHandler={this.onArchiveHandler} />
->>>>>>> 7dabe52580df8cc881445f9668aad80e81d78e31
      </div>
    );
  }
