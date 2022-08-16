@@ -29,15 +29,11 @@ class ContactApp extends React.Component {
   }
 
   onSearch(title) {
-    let contacts;
-    if (title !== '' && title.length > 0) {
-      contacts = this.state.contacts.filter((contact) => {
-        return contact.title.toLowerCase().includes(title.toLowerCase());
-      });
-    } else {
-      contacts = getData();
-    }
-    this.setState({ contacts });
+    this.setState(() => {
+      return {
+        search : title
+      }
+    })
   }
 
   onAddContactHandler({ title, body }) {
@@ -51,6 +47,7 @@ class ContactApp extends React.Component {
             body,
             imageUrl: '/images/default.jpg',
             archived: false,
+            createdAt: new Date()
           }
         ]
       }
@@ -58,21 +55,22 @@ class ContactApp extends React.Component {
   }
  
  render() {
-  const daftarContact = this.state.contacts.filter((contact) => {
+  const contacts = this.state.contacts.filter((contact) => contact.title.toLowerCase().includes(this.state.search.toLowerCase()))
+  const daftarContact = contacts.filter((contact) => {
     return contact.archived === false;
   });
-  const archivedContact = this.state.contacts.filter((contact) => {
+  const archivedContact = contacts.filter((contact) => {
     return contact.archived === true;
   })
    return (
      <div className="contact-app">
-      <h1>Aplikasi Kontak</h1>
+      <h1>Data Notes </h1>
         <SearchNotes onSearch={this.onSearch} />
-       <h2>Tambah Kontak</h2>
+       <h2>Tambah Data</h2>
        <ContactInput addContact={this.onAddContactHandler} />
-       <h2>Daftar Kontak</h2>
+       <h2>Daftar Data</h2>
        <ContactList contacts={daftarContact} onDelete={this.onDeleteHandler} onArchive={this.onArchiveHandler} />
-       <h2>Arsip Kontak</h2>
+       <h2>Arsip Data</h2>
        <ContactList contacts={archivedContact} onDelete={this.onDeleteHandler} onArchive={this.onArchiveHandler} />
      </div>
    );

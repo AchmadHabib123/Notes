@@ -4,11 +4,11 @@ import ContactItemImage from './ContactItemImage';
 import DeleteButton from './DeleteButton';
 import ArchiveButton from './ArchiveButton';
  
-function ContactItem({ imageUrl, title, body, id, onDelete, onArchive, isArchived}) {
+function ContactItem({ imageUrl, title, body, createdAt,id, onDelete, onArchive, isArchived}) {
  return (
    <div className="contact-item">
      <ContactItemImage imageUrl={imageUrl} />
-     <ContactItemBody name={title} body={body} />
+     <ContactItemBody title={title} body={body} createdAt={createdAt}/>
      <DeleteButton id={id} onDelete={onDelete} />
      <ArchiveButton id={id} onArchive={onArchive} isArchived={isArchived}/>
    </div>

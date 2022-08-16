@@ -101,6 +101,10 @@ img {
     font-family: 'Inter', sans-serif;
 }
 
+.contact-input__title__char-limit {
+    color: rgb(180, 180, 10);
+}
+
 .contact-list {
     color: white;
 }
