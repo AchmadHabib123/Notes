@@ -1,6 +1,6 @@
 import React from 'react';
  
-class ContactInput extends React.Component {
+class NotesInput extends React.Component {
     constructor(props) {
         super(props);
 
@@ -16,11 +16,11 @@ class ContactInput extends React.Component {
     }
  
     onTitleChangeEventHandler(event) {
-        if(this.state.limit > 0){
-            this.setState((s) => {
+        if(this.state.limit >= 0 && event.target.value.length <= 50){
+            this.setState(() => {
               return {
                 title : event.target.value,
-                limit: s.limit - 1,
+                limit: 50 - event.target.value.length,
               }
             });
           }
@@ -41,7 +41,7 @@ class ContactInput extends React.Component {
             return {
                 title : '',
                 body : '',
-                limit: 50
+                limit: 50,
             }
         });
     }
@@ -49,14 +49,14 @@ class ContactInput extends React.Component {
     // fungsi render disembunyikan
     render() {
         return (
-        <form className='contact-input' onSubmit={this.onSubmitEventHandler}>
-            <p className='contact-input__title__char-limit'>Sisa karakter: {this.state.limit}</p>
-            <input className="contact-input__title" type="text" placeholder="Judul" value={this.state.title} onChange={this.onTitleChangeEventHandler} />
-            <textarea className= "contact-input__body" type="text" placeholder="Deskripsi" value={this.state.body} onChange={this.onBodyChangeEventHandler} />
+        <form className='notes-input' onSubmit={this.onSubmitEventHandler}>
+            <p className='notes-input__title__char-limit'>Sisa karakter: {this.state.limit}</p>
+            <input className="notes-input__title" type="text" placeholder="Judul" value={this.state.title} onChange={this.onTitleChangeEventHandler} />
+            <textarea className= "notes-input__body" type="text" placeholder="Deskripsi" value={this.state.body} onChange={this.onBodyChangeEventHandler} />
             <button type="submit">Tambah</button>
         </form>
         )
     }
 }
  
-export default ContactInput;
+export default NotesInput;

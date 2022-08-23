@@ -1,14 +1,15 @@
 import React from 'react';
-import ContactList from './ContactList';
+import NotesList from './NotesList';
 import { getData } from '../utils/data';
-import ContactInput from './ContactInput';
+import NotesInput from './NotesInput';
 import SearchNotes from './SearchNotes';
+import Message from './Message';
  
 class ContactApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      contacts: getData(),
+      notes: getData(),
       search:'',
     }
  
@@ -19,13 +20,13 @@ class ContactApp extends React.Component {
   }
  
   onDeleteHandler(id) {
-    const contacts = this.state.contacts.filter(contact => contact.id !== id);
-    this.setState({ contacts });
+    const notes = this.state.notes.filter(note => note.id !== id);
+    this.setState({ notes });
   }
 
   onArchiveHandler(id) {
-    const contacts = this.state.contacts.map(contact => contact.id === id ? {...contact, archived : !contact.archived} : contact);
-    this.setState({ contacts });
+    const notes = this.state.notes.map(note => note.id === id ? {...note, archived : !note.archived} : note);
+    this.setState({ notes });
   }
 
   onSearch(title) {
@@ -39,13 +40,13 @@ class ContactApp extends React.Component {
   onAddContactHandler({ title, body }) {
     this.setState((prevState) => {
       return {
-        contacts: [
-          ...prevState.contacts,
+        notes: [
+          ...prevState.notes,
           {
             id: +new Date(),
             title,
             body,
-            imageUrl: '/images/default.jpg',
+            imageUrl: '/images/triangle.jpg',
             archived: false,
             createdAt: new Date()
           }
@@ -55,23 +56,23 @@ class ContactApp extends React.Component {
   }
  
  render() {
-  const contacts = this.state.contacts.filter((contact) => contact.title.toLowerCase().includes(this.state.search.toLowerCase()))
-  const daftarContact = contacts.filter((contact) => {
-    return contact.archived === false;
+  const notes = this.state.notes.filter((note) => note.title.toLowerCase().includes(this.state.search.toLowerCase()))
+  const daftarContact = notes.filter((note) => {
+    return note.archived === false;
   });
-  const archivedContact = contacts.filter((contact) => {
-    return contact.archived === true;
+  const archivedContact = notes.filter((note) => {
+    return note.archived === true;
   })
    return (
-     <div className="contact-app">
+     <div className="notes-app">
       <h1>Data Notes </h1>
         <SearchNotes onSearch={this.onSearch} />
        <h2>Tambah Data</h2>
-       <ContactInput addContact={this.onAddContactHandler} />
+       <NotesInput addContact={this.onAddContactHandler} />
        <h2>Daftar Data</h2>
-       <ContactList contacts={daftarContact} onDelete={this.onDeleteHandler} onArchive={this.onArchiveHandler} />
+       {daftarContact.length > 0 ? <NotesList notes={daftarContact} onDelete={this.onDeleteHandler} onArchive={this.onArchiveHandler} /> : <Message/>}
        <h2>Arsip Data</h2>
-       <ContactList contacts={archivedContact} onDelete={this.onDeleteHandler} onArchive={this.onArchiveHandler} />
+       {archivedContact.length > 0 ? <NotesList notes={archivedContact} onDelete={this.onDeleteHandler} onArchive={this.onArchiveHandler} /> : <Message/>}
      </div>
    );
  }
