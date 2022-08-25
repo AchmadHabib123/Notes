@@ -2,8 +2,8 @@ import React from 'react';
 import NotesList from './NotesList';
 import { getData } from '../utils/data';
 import NotesInput from './NotesInput';
-import SearchNotes from './SearchNotes';
-import Message from './Message';
+import SearchNotes from './search/SearchNotes';
+import Message from './message/Message';
  
 class ContactApp extends React.Component {
   constructor(props) {
@@ -15,7 +15,7 @@ class ContactApp extends React.Component {
  
     this.onDeleteHandler = this.onDeleteHandler.bind(this);
     this.onArchiveHandler = this.onArchiveHandler.bind(this);
-    this.onAddContactHandler = this.onAddContactHandler.bind(this);
+    this.onAddNotesHandler = this.onAddNotesHandler.bind(this);
     this.onSearch = this.onSearch.bind(this);
   }
  
@@ -37,7 +37,7 @@ class ContactApp extends React.Component {
     })
   }
 
-  onAddContactHandler({ title, body }) {
+  onAddNotesHandler({ title, body }) {
     this.setState((prevState) => {
       return {
         notes: [
@@ -57,10 +57,10 @@ class ContactApp extends React.Component {
  
  render() {
   const notes = this.state.notes.filter((note) => note.title.toLowerCase().includes(this.state.search.toLowerCase()))
-  const daftarContact = notes.filter((note) => {
+  const daftarNotes = notes.filter((note) => {
     return note.archived === false;
   });
-  const archivedContact = notes.filter((note) => {
+  const archivedNotes = notes.filter((note) => {
     return note.archived === true;
   })
    return (
@@ -68,11 +68,11 @@ class ContactApp extends React.Component {
       <h1>Data Notes </h1>
         <SearchNotes onSearch={this.onSearch} />
        <h2>Tambah Data</h2>
-       <NotesInput addContact={this.onAddContactHandler} />
+       <NotesInput addNotes={this.onAddNotesHandler} />
        <h2>Daftar Data</h2>
-       {daftarContact.length > 0 ? <NotesList notes={daftarContact} onDelete={this.onDeleteHandler} onArchive={this.onArchiveHandler} /> : <Message/>}
+       {daftarNotes.length > 0 ? <NotesList notes={daftarNotes} onDelete={this.onDeleteHandler} onArchive={this.onArchiveHandler} /> : <Message/>}
        <h2>Arsip Data</h2>
-       {archivedContact.length > 0 ? <NotesList notes={archivedContact} onDelete={this.onDeleteHandler} onArchive={this.onArchiveHandler} /> : <Message/>}
+       {archivedNotes.length > 0 ? <NotesList notes={archivedNotes} onDelete={this.onDeleteHandler} onArchive={this.onArchiveHandler} /> : <Message/>}
      </div>
    );
  }

@@ -1,8 +1,8 @@
 import React from 'react';
 import NotesItemBody from './NotesItemBody';
 import NotesItemImage from './NotesItemImage';
-import DeleteButton from './DeleteButton';
-import ArchiveButton from './ArchiveButton';
+import DeleteButton from '../button/DeleteButton';
+import ArchiveButton from '../button/ArchiveButton';
  
 function NotesItem({ imageUrl, title, body, createdAt,id, onDelete, onArchive, isArchived}) {
  return (

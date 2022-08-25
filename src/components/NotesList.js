@@ -1,5 +1,5 @@
 import React from 'react';
-import NotesItem from './NotesItem';
+import NotesItem from './item/NotesItem';
  
 function NotesList({ notes, onDelete, onArchive }) {
   return (

@@ -36,7 +36,7 @@ class NotesInput extends React.Component {
  
     onSubmitEventHandler(event) {
         event.preventDefault();
-        this.props.addContact(this.state);
+        this.props.addNotes(this.state);
         this.setState(() => {
             return {
                 title : '',

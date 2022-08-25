@@ -143,3 +143,7 @@ img {
 .search-note ::placeholder {
     color: white;
 }
+
+.notes-blank-message {
+    color: white;
+}
